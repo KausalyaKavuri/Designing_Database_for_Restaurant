@@ -116,3 +116,62 @@ CONSTRAINT fk_cid_tables FOREIGN KEY(customerid) REFERENCES customer(id)
 );
 
 ```
+
+
+## The data required in this application was provided to us by Professor and the SQL Queries and analysis after the data awas inserted is as follows:
+
+### SQL Queries & Analysis:
+
+#### Query  1: Return the name, email, phone number, date of birth for the most first customer.
+
+``` SQL
+select name, email, phonenumber, dob from customer where id in (select min(id) from customer)
+
+```
+
+#### Query  2: Return the various roles of restaurant Stakeholders’ in the database.
+
+``` SQL
+select distinct (designation) from stakeholders
+
+```
+
+#### Query  3: Return the item along with it’s quantity in the inventory.
+
+``` SQL
+select itemname, quantity
+from inventory
+group by itemname, quantity
+order by quantity
+
+```
+
+#### Query  4: Return Customer contact details who has the highest payment in the restaurant to give coupon.
+
+``` SQL
+select gratuities, phonenumber, email, name
+from customer c, orders r, payment p
+where c.id = r.customerid and p.orderid = r.id and gratuities = (select max(gratuities) from payment)
+
+```
+
+#### Query  5: Return Customer and stakeholders’ born in the month of May.
+
+``` SQL
+select dob, name  from customer where dob like '%MAY%'
+UNION 
+select dob,name from stakeholders where dob like '%MAY%'
+
+select dob from stakeholders where dob like '%MAY%'
+
+```
+
+#### Query  6: Return the table which has been booked more than 5 times.
+
+``` SQL
+select name, count(*) as number_times_booked 
+from seat_table
+group by name
+having count (*) > 5
+
+```
