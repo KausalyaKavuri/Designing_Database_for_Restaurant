@@ -118,7 +118,7 @@ CONSTRAINT fk_cid_tables FOREIGN KEY(customerid) REFERENCES customer(id)
 ```
 
 
-## The data required in this application was provided to us by Professor and the SQL Queries and analysis after the data awas inserted is as follows:
+## The data required in this application was provided to us by Professor and the SQL Queries and analysis after the data was inserted is as follows:
 
 ### SQL Queries & Analysis:
 
